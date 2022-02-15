@@ -1,0 +1,7 @@
+name: SimpleModeration
+version: '${project.version}'
+main: dev.dronade.simplemoderation.Main
+api-version: 1.16
+authors: [ Dronade ]
+commands:
+  kick:
