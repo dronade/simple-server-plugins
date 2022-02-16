@@ -13,6 +13,9 @@ public class Kick extends ModerationCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
+        //to do:
+        // abstract out player permissions, argument length check, and player exists check (moderationCommand)
+        // check if player is online before kicking
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;
             boolean permitted = player.hasPermission("simpleModeration.kick");
@@ -24,7 +27,7 @@ public class Kick extends ModerationCommand implements CommandExecutor {
             }
 
             if (args.length > 2){
-                player.sendMessage(Colours.colors("&4 Please use in format '/kick <username> [duration] [reason]'."));
+                player.sendMessage(Colours.colors("&4 Please use in format '/kick <username> [reason]'."));
                 return false;
             }
             Player targetPlayer = Bukkit.getPlayer(args[0]);
