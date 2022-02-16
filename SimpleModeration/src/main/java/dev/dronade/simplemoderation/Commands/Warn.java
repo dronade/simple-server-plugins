@@ -7,11 +7,15 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-// '/warn <username> [reason]'
+/**
+ * Warn command, usage: /warn <username> [reason]
+ * @author Emily
+ */
+
 public class Warn implements CommandExecutor {
     //to do:
     // abstract out player permissions, argument length check, and player exists check (moderationCommand)
-    // decide on some way to check how many warns + their reasons a player has (probably a database *sigh*)
+    // decide on some way to check how many warns + the reasons a player has said warns (probably a database *sigh*)
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;

@@ -6,3 +6,4 @@ authors: [ Dronade ]
 commands:
   kick:
   warn:
+  ban:

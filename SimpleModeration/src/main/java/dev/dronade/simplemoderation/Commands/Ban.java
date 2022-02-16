@@ -3,6 +3,7 @@ package dev.dronade.simplemoderation.Commands;
 import dev.dronade.simplemoderation.Colours;
 import org.bukkit.BanList;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -25,6 +26,7 @@ public class Ban extends ModerationCommand implements CommandExecutor {
         // check if player is online before kicking after being banned
         // add duration, if no duration, ban is infinite
         // add pardon command to reverse this
+        // default reason?
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;
             boolean permitted = player.hasPermission("simpleModeration.ban");
@@ -52,7 +54,10 @@ public class Ban extends ModerationCommand implements CommandExecutor {
                 String reason = args[1];
                 Bukkit.getBanList(BanList.Type.NAME).addBan(targetPlayer.getName(),
                         Colours.colors("&4&lYou have been banned for " + reason ), null, null);
-                // add kick player if online
+                boolean isOnline = targetPlayer.isOnline();
+                if (isOnline = true){
+                    targetPlayer.kickPlayer(Colours.colors("&4&o You have been kicked by " + player.getName() + "&4&l for " + reason));
+                }
             } else if (args.length == 3){
                 int duration;
                 try {
@@ -67,7 +72,10 @@ public class Ban extends ModerationCommand implements CommandExecutor {
                 Bukkit.getBanList(BanList.Type.NAME).addBan(targetPlayer.getName(),
                         Colours.colors("&4&lYou have been banned for " + calender.getTime()
                                 + "&4&l. Reason: " + reason ), calender.getTime(), null);
-                // add kick player if online
+                boolean isOnline = targetPlayer.isOnline();
+                if (isOnline = true){
+                    targetPlayer.kickPlayer(Colours.colors("&4&o You have been kicked by " + player.getName() + "&4&l for " + reason));
+                }
             } else {
                 player.sendMessage(Colours.colors("&4 Too many arguments!"));
             }
