@@ -13,12 +13,15 @@ public abstract class ModerationCommand {
     }
     // to implement these at some point but it makes my brain hurt
     public boolean permissionCheck(CommandSender commandSender, Command command, String label, String[] args) {
+
         return false;
     }
-    public boolean arguementCheck(CommandSender commandSender){
+    public boolean argumentCheck(CommandSender commandSender){
+
         return false;
     }
     public boolean playerExistsCheck(CommandSender commandSender){
+
         return false;
     }
 }

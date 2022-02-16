@@ -36,11 +36,9 @@ public class Warn implements CommandExecutor {
                 return false;
             }
             String reason = args[1];
-            targetPlayer.sendMessage("&4&o you have been warned for " + reason);
+            targetPlayer.sendMessage(Colours.colors("&4&o You have been warned for " + reason));
 
         }
-
-
 
         return false;
 

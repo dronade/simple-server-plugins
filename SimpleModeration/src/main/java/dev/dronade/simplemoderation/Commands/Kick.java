@@ -7,8 +7,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+/**
+ * Kick command, usage: /kick <username> [reason]
+ * @author Emily
+ */
 
-// '/kick <username> [reason]'
 public class Kick extends ModerationCommand implements CommandExecutor {
 
     @Override
@@ -22,12 +25,12 @@ public class Kick extends ModerationCommand implements CommandExecutor {
             boolean isOp = player.isOp();
 
             if (!permitted | !isOp) {
-                player.sendMessage(Colours.colors("&4 You are not permitted to use this command."));
+                player.sendMessage(Colours.colors("&4You are not permitted to use this command."));
                 return false;
             }
 
             if (args.length > 2){
-                player.sendMessage(Colours.colors("&4 Please use in format '/kick <username> [reason]'."));
+                player.sendMessage(Colours.colors("&4Please use in format '/kick <username> [reason]'."));
                 return false;
             }
             Player targetPlayer = Bukkit.getPlayer(args[0]);
@@ -38,11 +41,10 @@ public class Kick extends ModerationCommand implements CommandExecutor {
                 }
                 return false;
             }
-            targetPlayer.kickPlayer(Colours.colors("&4&o You have been kicked by " + player.getName()));
+            String reason = args[1];
+            targetPlayer.kickPlayer(Colours.colors("&4&o You have been kicked by " + player.getName() + "&4&l for " + reason));
 
         }
-
-
 
         return false;
 
