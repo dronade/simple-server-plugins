@@ -10,6 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 /**
  * Ban command, usage: /ban <username> [duration] [reason]
@@ -28,20 +29,14 @@ public class Ban extends ModerationCommand implements CommandExecutor {
 
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;
-            boolean permitted = player.hasPermission("simpleModeration.ban");
-            boolean isOp = player.isOp();
-
-            if (!permitted | !isOp) {
+            if (!player.hasPermission("simplemoderation.ban")) {
                 player.sendMessage(Colours.colors("&4You are not permitted to use this command."));
                 return false;
             }
-            // ** next thing to sort out is this block **
-            Player targetPlayer = Bukkit.getPlayer(args[0]);
+
+            OfflinePlayer targetPlayer = Bukkit.getOfflinePlayer(args[0]);
             if (targetPlayer == null){
-                targetPlayer = (Player) Bukkit.getServer().getOfflinePlayer(args[0]);
-                if (targetPlayer == null){
-                    player.sendMessage(Colours.colors("&4 Player does not exist."));
-                }
+                player.sendMessage(Colours.colors("&4 Player does not exist."));
                 return false;
             }
 
@@ -57,11 +52,11 @@ public class Ban extends ModerationCommand implements CommandExecutor {
                 String reason = args[2];
                 Calendar calendar = Calendar.getInstance();
                 calendar.add(Calendar.HOUR, duration);
-                Bukkit.getBanList(BanList.Type.NAME).addBan(targetPlayer.getName(),
+                Bukkit.getBanList(BanList.Type.NAME).addBan(Objects.requireNonNull(targetPlayer.getName()),
                         Colours.colors("&4" + reason ), calendar.getTime(), null);
                 boolean isOnline = targetPlayer.isOnline();
                 if (isOnline = true){
-                    targetPlayer.kickPlayer(Colours.colors("&4&o You have been banned by " + player.getName() + "&4&o for " + reason));
+                    Objects.requireNonNull(targetPlayer.getPlayer()).kickPlayer(Colours.colors("&4&o You have been banned by " + player.getName() + "&4&o for " + reason));
                 }
 
             } else if (args.length == 2){
@@ -76,29 +71,29 @@ public class Ban extends ModerationCommand implements CommandExecutor {
                 if (reason == null) {
                     Calendar calendar = Calendar.getInstance();
                     calendar.add(Calendar.HOUR, duration);
-                    Bukkit.getBanList(BanList.Type.NAME).addBan(targetPlayer.getName(),
+                    Bukkit.getBanList(BanList.Type.NAME).addBan(Objects.requireNonNull(targetPlayer.getName()),
                             //need to provide default reason?
                             Colours.colors("&4&l Banned" ), calendar.getTime(), null);
                     boolean isOnline = targetPlayer.isOnline();
                     if (isOnline = true){
-                        targetPlayer.kickPlayer(Colours.colors("&4&o You have been banned by " + player.getName()));
+                        Objects.requireNonNull(targetPlayer.getPlayer()).kickPlayer(Colours.colors("&4&o You have been banned by " + player.getName()));
                     }
                     // case: only reason, no duration
                 } else {
-                    Bukkit.getBanList(BanList.Type.NAME).addBan(targetPlayer.getName(),
+                    Bukkit.getBanList(BanList.Type.NAME).addBan(Objects.requireNonNull(targetPlayer.getName()),
                             Colours.colors("&4&l" + reason), null, null);
                     boolean isOnline = targetPlayer.isOnline();
                     if (isOnline = true) {
-                        targetPlayer.kickPlayer(Colours.colors("&4&o You have been kicked by " + player.getName() + "&4&l for " + reason));
+                        Objects.requireNonNull(targetPlayer.getPlayer()).kickPlayer(Colours.colors("&4&o You have been kicked by " + player.getName() + "&4&l for " + reason));
                     }
                 }
                 // case: no duration or reason
             } else if (args.length == 1){
-                Bukkit.getBanList(BanList.Type.NAME).addBan(targetPlayer.getName(),
+                Bukkit.getBanList(BanList.Type.NAME).addBan(Objects.requireNonNull(targetPlayer.getName()),
                         Colours.colors("&4&l Banned" ), null, null);
                 boolean isOnline = targetPlayer.isOnline();
                 if (isOnline = true){
-                    targetPlayer.kickPlayer(Colours.colors("&4&o You have been banned by " + player.getName()));
+                    Objects.requireNonNull(targetPlayer.getPlayer()).kickPlayer(Colours.colors("&4&o You have been banned by " + player.getName()));
                 }
             } else {
                 player.sendMessage(Colours.colors("&4Please use in format '/ban <username> [duration] [reason]'."));
