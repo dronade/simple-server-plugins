@@ -26,6 +26,7 @@ public class Ban extends ModerationCommand implements CommandExecutor {
         // abstract out player permissions, argument length check, and player exists check (moderationCommand)
         // add pardon command to reverse this
         // be able to perform command from terminal
+        // need to add string builder
 
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;

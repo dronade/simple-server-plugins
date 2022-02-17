@@ -22,6 +22,7 @@ public class Kick extends ModerationCommand implements CommandExecutor {
         //to do:
         // abstract out player permissions, argument length check, and player exists check (moderationCommand)
         // be able to perform command from terminal
+        // need to add string builder
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;
             if (!player.hasPermission("simplemoderation.kick")) {
@@ -29,7 +30,7 @@ public class Kick extends ModerationCommand implements CommandExecutor {
                 return false;
             }
 
-            if (args.length > 2){
+            if (args.length < 1){
                 player.sendMessage(Colours.colors("&4Please use in format '/kick <username> [reason]'."));
                 return false;
             }

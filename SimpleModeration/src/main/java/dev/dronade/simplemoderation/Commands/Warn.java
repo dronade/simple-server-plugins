@@ -29,7 +29,7 @@ public class Warn implements CommandExecutor {
                 return false;
             }
 
-            if (args.length > 2){
+            if (args.length < 1){
                 player.sendMessage(Colours.colors("&4 Please use in format '/warn <username> [reason]'."));
                 return false;
             }
@@ -38,10 +38,14 @@ public class Warn implements CommandExecutor {
                 player.sendMessage(Colours.colors("&4 Player does not exist."));
                 return false;
             }
-            if (args[1] == null ){
+
+            if (args.length == 1){
                 Objects.requireNonNull(targetPlayer.getPlayer()).sendMessage(Colours.colors("&4&o You have been warned" ));
             } else {
-                String reason = args[1];
+                StringBuilder reason = new StringBuilder(args[1]);
+                for (int arg = 2; arg < args.length; arg++) {
+                    reason.append(" ").append(args[arg]);
+                }
                 Objects.requireNonNull(targetPlayer.getPlayer()).sendMessage(Colours.colors("&4&o You have been warned for " + reason));
             }
 
