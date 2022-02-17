@@ -18,7 +18,6 @@ public class Kick extends ModerationCommand implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
         //to do:
         // abstract out player permissions, argument length check, and player exists check (moderationCommand)
-        // check if player is online before kicking
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;
             boolean permitted = player.hasPermission("simpleModeration.kick");
@@ -41,14 +40,18 @@ public class Kick extends ModerationCommand implements CommandExecutor {
                 }
                 return false;
             }
-            // need to check if player is online
-            if (args.length == 1){
-                targetPlayer.kickPlayer(Colours.colors("&4&o You have been kicked by " + player.getName()));
-            } else if (args.length == 2){
-                String reason = args[1];
-                targetPlayer.kickPlayer(Colours.colors("&4&o You have been kicked by " + player.getName() + "&4&o for " + reason));
-            } else{
-                player.sendMessage(Colours.colors("&4 Too many arguments."));
+            boolean isOnline = targetPlayer.isOnline();
+            if (isOnline = true) {
+                if (args.length == 1) {
+                    targetPlayer.kickPlayer(Colours.colors("&4&o You have been kicked by " + player.getName()));
+                } else if (args.length == 2) {
+                    String reason = args[1];
+                    targetPlayer.kickPlayer(Colours.colors("&4&o You have been kicked by " + player.getName() + "&4&o for " + reason));
+                } else {
+                    player.sendMessage(Colours.colors("&4 Too many arguments."));
+                }
+            } else {
+                player.sendMessage(Colours.colors("&4 Player is not online"));
             }
 
         }

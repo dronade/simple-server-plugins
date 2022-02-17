@@ -23,10 +23,9 @@ public class Ban extends ModerationCommand implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
         //to do:
         // abstract out player permissions, argument length check, and player exists check (moderationCommand)
-        // check if player is online before kicking after being banned
-        // add duration, if no duration, ban is infinite
         // add pardon command to reverse this
-        // default reason?
+        // condition for a duration but no reason
+
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;
             boolean permitted = player.hasPermission("simpleModeration.ban");
@@ -50,31 +49,30 @@ public class Ban extends ModerationCommand implements CommandExecutor {
                 }
                 return false;
             }
-            if (args.length == 2){
+            if (args.length == 1){
                 String reason = args[1];
                 Bukkit.getBanList(BanList.Type.NAME).addBan(targetPlayer.getName(),
-                        Colours.colors("&4&lYou have been banned for " + reason ), null, null);
+                        Colours.colors("&4&l" + reason ), null, null);
                 boolean isOnline = targetPlayer.isOnline();
                 if (isOnline = true){
                     targetPlayer.kickPlayer(Colours.colors("&4&o You have been kicked by " + player.getName() + "&4&l for " + reason));
                 }
-            } else if (args.length == 3){
+            } else if (args.length == 2){
                 int duration;
                 try {
-                    duration = Integer.parseInt(args[1]);
+                    duration = Integer.parseInt(args[2]);
                 } catch (NumberFormatException e) {
                     player.sendMessage(Colours.colors("&4 Please enter a valid number of hours!"));
                     return false;
                 }
-                String reason = args[2];
+                String reason = args[3];
                 Calendar calender = Calendar.getInstance();
                 calender.add(calender.HOUR, duration);
                 Bukkit.getBanList(BanList.Type.NAME).addBan(targetPlayer.getName(),
-                        Colours.colors("&4&lYou have been banned for " + calender.getTime()
-                                + "&4&l. Reason: " + reason ), calender.getTime(), null);
+                        Colours.colors("&4&l" + reason ), calender.getTime(), null);
                 boolean isOnline = targetPlayer.isOnline();
                 if (isOnline = true){
-                    targetPlayer.kickPlayer(Colours.colors("&4&o You have been kicked by " + player.getName() + "&4&l for " + reason));
+                    targetPlayer.kickPlayer(Colours.colors("&4&o You have been banned by " + player.getName() + "&4&l for " + reason));
                 }
             } else {
                 player.sendMessage(Colours.colors("&4 Too many arguments!"));
