@@ -16,6 +16,7 @@ public class Warn implements CommandExecutor {
     //to do:
     // abstract out player permissions, argument length check, and player exists check (moderationCommand)
     // decide on some way to check how many warns + the reasons a player has said warns (probably a database *sigh*)
+    // be able to perform command from terminal
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;

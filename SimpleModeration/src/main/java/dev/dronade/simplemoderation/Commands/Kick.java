@@ -18,6 +18,7 @@ public class Kick extends ModerationCommand implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
         //to do:
         // abstract out player permissions, argument length check, and player exists check (moderationCommand)
+        // be able to perform command from terminal
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;
             boolean permitted = player.hasPermission("simpleModeration.kick");
