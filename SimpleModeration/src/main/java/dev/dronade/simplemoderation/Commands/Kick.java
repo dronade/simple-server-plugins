@@ -31,7 +31,7 @@ public class Kick extends ModerationCommand implements CommandExecutor {
             }
 
             if (args.length < 1){
-                player.sendMessage(Colours.colors("&4Please use in format '/kick <username> [reason]'."));
+                player.sendMessage(Colours.colors("&4 Please use in format '/kick <username> [reason]'."));
                 return false;
             }
             OfflinePlayer targetPlayer = Bukkit.getOfflinePlayer(args[0]);
@@ -40,12 +40,14 @@ public class Kick extends ModerationCommand implements CommandExecutor {
                 return false;
             }
             boolean isOnline = targetPlayer.isOnline();
-            if (isOnline = true) {
+            if (isOnline) {
                 if (args.length == 1) {
-                    Objects.requireNonNull(targetPlayer.getPlayer()).kickPlayer(Colours.colors("&4&o You have been kicked by " + player.getName()));
+                    Objects.requireNonNull(targetPlayer.getPlayer()).kickPlayer(Colours.colors
+                            ("&4&o You have been kicked by " + player.getName()));
                 } else if (args.length == 2) {
                     String reason = args[1];
-                    Objects.requireNonNull(targetPlayer.getPlayer()).kickPlayer(Colours.colors("&4&o You have been kicked by " + player.getName() + "&4&o for " + reason));
+                    Objects.requireNonNull(targetPlayer.getPlayer()).kickPlayer(Colours.colors
+                            ("&4&o You have been kicked by " + player.getName() + "&4&o for " + reason));
                 } else {
                     player.sendMessage(Colours.colors("&4 Too many arguments."));
                 }

@@ -21,6 +21,7 @@ public class Warn implements CommandExecutor {
     // decide on some way to check how many warns + the reasons a player has said warns (probably a database *sigh*)
     // be able to perform command from terminal
     // a way to revoke a warn?
+    // need to add isOnline
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;
@@ -40,13 +41,15 @@ public class Warn implements CommandExecutor {
             }
 
             if (args.length == 1){
-                Objects.requireNonNull(targetPlayer.getPlayer()).sendMessage(Colours.colors("&4&o You have been warned" ));
+                Objects.requireNonNull(targetPlayer.getPlayer()).sendMessage(Colours.colors
+                        ("&4&o You have been warned" ));
             } else {
                 StringBuilder reason = new StringBuilder(args[1]);
                 for (int arg = 2; arg < args.length; arg++) {
                     reason.append(" ").append(args[arg]);
                 }
-                Objects.requireNonNull(targetPlayer.getPlayer()).sendMessage(Colours.colors("&4&o You have been warned for " + reason));
+                Objects.requireNonNull(targetPlayer.getPlayer()).sendMessage(Colours.colors
+                        ("&4&o You have been warned for " + reason));
             }
 
         }

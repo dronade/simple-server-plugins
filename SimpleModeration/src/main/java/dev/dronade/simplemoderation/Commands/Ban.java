@@ -56,8 +56,9 @@ public class Ban extends ModerationCommand implements CommandExecutor {
                 Bukkit.getBanList(BanList.Type.NAME).addBan(Objects.requireNonNull(targetPlayer.getName()),
                         Colours.colors("&4" + reason ), calendar.getTime(), null);
                 boolean isOnline = targetPlayer.isOnline();
-                if (isOnline = true){
-                    Objects.requireNonNull(targetPlayer.getPlayer()).kickPlayer(Colours.colors("&4&o You have been banned by " + player.getName() + "&4&o for " + reason));
+                if (isOnline){
+                    Objects.requireNonNull(targetPlayer.getPlayer()).kickPlayer(Colours.colors
+                            ("&4&o You have been banned by " + player.getName() + "&4&o for " + reason));
                 }
 
             } else if (args.length == 2){
@@ -77,7 +78,8 @@ public class Ban extends ModerationCommand implements CommandExecutor {
                             Colours.colors("&4&l Banned" ), calendar.getTime(), null);
                     boolean isOnline = targetPlayer.isOnline();
                     if (isOnline = true){
-                        Objects.requireNonNull(targetPlayer.getPlayer()).kickPlayer(Colours.colors("&4&o You have been banned by " + player.getName()));
+                        Objects.requireNonNull(targetPlayer.getPlayer()).kickPlayer(Colours.colors
+                                ("&4&o You have been banned by " + player.getName()));
                     }
                     // case: only reason, no duration
                 } else {
@@ -85,7 +87,8 @@ public class Ban extends ModerationCommand implements CommandExecutor {
                             Colours.colors("&4&l" + reason), null, null);
                     boolean isOnline = targetPlayer.isOnline();
                     if (isOnline = true) {
-                        Objects.requireNonNull(targetPlayer.getPlayer()).kickPlayer(Colours.colors("&4&o You have been kicked by " + player.getName() + "&4&l for " + reason));
+                        Objects.requireNonNull(targetPlayer.getPlayer()).kickPlayer(Colours.colors
+                                ("&4&o You have been kicked by " + player.getName() + "&4&l for " + reason));
                     }
                 }
                 // case: no duration or reason
@@ -94,7 +97,8 @@ public class Ban extends ModerationCommand implements CommandExecutor {
                         Colours.colors("&4&l Banned" ), null, null);
                 boolean isOnline = targetPlayer.isOnline();
                 if (isOnline = true){
-                    Objects.requireNonNull(targetPlayer.getPlayer()).kickPlayer(Colours.colors("&4&o You have been banned by " + player.getName()));
+                    Objects.requireNonNull(targetPlayer.getPlayer()).kickPlayer(Colours.colors
+                            ("&4&o You have been banned by " + player.getName()));
                 }
             } else {
                 player.sendMessage(Colours.colors("&4Please use in format '/ban <username> [duration] [reason]'."));
