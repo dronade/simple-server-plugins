@@ -44,13 +44,15 @@ public class Kick extends ModerationCommand implements CommandExecutor {
                 if (args.length == 1) {
                     Objects.requireNonNull(targetPlayer.getPlayer()).kickPlayer(Colours.colors
                             ("&4&o You have been kicked by " + player.getName()));
-                } else if (args.length == 2) {
-                    String reason = args[1];
+                } else {
+                    StringBuilder reason = new StringBuilder(args[1]);
+                    for (int arg = 2; arg < args.length; arg++) {
+                        reason.append(" ").append(args[arg]);
+                    }
                     Objects.requireNonNull(targetPlayer.getPlayer()).kickPlayer(Colours.colors
                             ("&4&o You have been kicked by " + player.getName() + "&4&o for " + reason));
-                } else {
-                    player.sendMessage(Colours.colors("&4 Too many arguments."));
                 }
+
             } else {
                 player.sendMessage(Colours.colors("&4 Player is not online"));
             }
