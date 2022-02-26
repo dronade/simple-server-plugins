@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3ba9df19-4985-4d77-ba56-f44a04df575d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleModeration/src/main/java/dev/dronade/simplemoderation/Commands/Ban.java" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleModeration/src/main/java/dev/dronade/simplemoderation/Commands/Ban.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SimpleModeration/src/main/java/dev/dronade/simplemoderation/Commands/Kick.java" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleModeration/src/main/java/dev/dronade/simplemoderation/Commands/Kick.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
