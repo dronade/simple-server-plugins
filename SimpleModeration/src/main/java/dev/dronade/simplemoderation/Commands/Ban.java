@@ -26,6 +26,7 @@ public class Ban extends ModerationCommand implements CommandExecutor {
         // abstract out player permissions, argument length check, and player exists check (moderationCommand)
         // add pardon command to reverse this
         // be able to perform command from terminal
+        // check if player is already banned
 
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;
@@ -34,20 +35,20 @@ public class Ban extends ModerationCommand implements CommandExecutor {
                 return false;
             }
             // need to fix
-            OfflinePlayer targetPlayer = Bukkit.getOfflinePlayer(args[0]);
+            OfflinePlayer targetPlayer = Bukkit.getPlayer(args[0]);
             if (targetPlayer == null) {
                 player.sendMessage(Colours.colors("&4 Player does not exist."));
                 return false;
             }
 
-            if (args.length < 1) {
-                player.sendMessage(Colours.colors("&4Please use in format '/ban <username> [duration] [reason]'."));
-            }
+//            if (args.length < 1) {
+//                player.sendMessage(Colours.colors("&4Please use in format '/ban <username> [duration] [reason]'."));
+//            }
 
             if (args.length >= 2) {
                 String reason = null;
                 int duration = 0;
-                // this if statement is causing the string builder for ban without duration to stop working,
+                // this if statement below is causing the string builder for ban without duration to stop working,
                 // need to come up with a workaround
                 if (args.length == 2){
                     try {

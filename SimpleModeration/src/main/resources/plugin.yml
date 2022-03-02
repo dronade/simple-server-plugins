@@ -8,3 +8,4 @@ commands:
   warn:
   ban:
   mute:
+  unban:

@@ -33,7 +33,7 @@ public class Kick extends ModerationCommand implements CommandExecutor {
                 player.sendMessage(Colours.colors("&4 Please use in format '/kick <username> [reason]'."));
                 return false;
             }
-            OfflinePlayer targetPlayer = Bukkit.getOfflinePlayer(args[0]);
+            OfflinePlayer targetPlayer = Bukkit.getPlayer(args[0]);
             if (targetPlayer == null){
                 player.sendMessage(Colours.colors("&4 Player does not exist."));
                 return false;

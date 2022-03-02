@@ -21,7 +21,6 @@ public class Warn implements CommandExecutor {
     // decide on some way to check how many warns + the reasons a player has said warns (probably a database *sigh*)
     // be able to perform command from terminal
     // a way to revoke a warn?
-    // need to add isOnline
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;
@@ -34,7 +33,7 @@ public class Warn implements CommandExecutor {
                 player.sendMessage(Colours.colors("&4 Please use in format '/warn <username> [reason]'."));
                 return false;
             }
-            OfflinePlayer targetPlayer = Bukkit.getOfflinePlayer(args[0]);
+            OfflinePlayer targetPlayer = Bukkit.getPlayer(args[0]);
             if (targetPlayer == null){
                 player.sendMessage(Colours.colors("&4 Player does not exist."));
                 return false;
