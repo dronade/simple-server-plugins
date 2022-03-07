@@ -13,7 +13,7 @@ import java.util.Calendar;
 import java.util.Objects;
 
 /**
- * Ban command, usage: /ban <username> [duration] [reason]
+ * Ban command, usage: /ban [ign] [duration/per/p] [reason]
  * covers both tempban and full ban
  * @author Emily
  */
@@ -41,27 +41,21 @@ public class Ban extends ModerationCommand implements CommandExecutor {
                 return false;
             }
 
-//            if (args.length < 1) {
-//                player.sendMessage(Colours.colors("&4Please use in format '/ban <username> [duration] [reason]'."));
-//            }
-
-            if (args.length >= 2) {
-                String reason = null;
-                int duration = 0;
-                // this if statement below is causing the string builder for ban without duration to stop working,
-                // need to come up with a workaround
-                if (args.length == 2){
-                    try {
-                        duration = Integer.parseInt(args[1]);
-                    } catch (NumberFormatException e) {
-                        reason = args[1];
+            if (args.length >= 3) {
+                if (args[1].equals("perm") | args[1].equals("p")){
+                    StringBuilder builtReason = new StringBuilder(args[2]);
+                    for (int arg = 3; arg < args.length; arg++) {
+                        builtReason.append(" ").append(args[arg]);
                     }
-                } else {
-                    duration = Integer.parseInt(args[1]);
-                    reason = args[2];
-                }
-
-                if (duration > 0 && reason != null) {
+                    Bukkit.getBanList(BanList.Type.NAME).addBan(Objects.requireNonNull(targetPlayer.getName()),
+                            Colours.colors("&4&l" + builtReason), null, null);
+                    boolean isOnline = targetPlayer.isOnline();
+                    if (isOnline = true) {
+                        Objects.requireNonNull(targetPlayer.getPlayer()).kickPlayer(Colours.colors
+                                ("&4&o You have been kicked by " + player.getName() + " for " + builtReason));
+                    }
+                } else if (args[1].matches("-?\\d+")) {
+                    int duration = Integer.parseInt(args[1]);
                     StringBuilder builtReason = new StringBuilder(args[2]);
                     for (int arg = 3; arg < args.length; arg++) {
                         builtReason.append(" ").append(args[arg]);
@@ -75,41 +69,11 @@ public class Ban extends ModerationCommand implements CommandExecutor {
                         Objects.requireNonNull(targetPlayer.getPlayer()).kickPlayer(Colours.colors
                                 ("&4&o You have been banned by " + player.getName() + " for " + builtReason));
                     }
-
-                } else if (reason == null) {
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.add(Calendar.HOUR, duration);
-                    Bukkit.getBanList(BanList.Type.NAME).addBan(Objects.requireNonNull(targetPlayer.getName()),
-                            //need to provide default reason?
-                            Colours.colors("&4&l Banned"), calendar.getTime(), null);
-                    boolean isOnline = targetPlayer.isOnline();
-                    if (isOnline = true) {
-                        Objects.requireNonNull(targetPlayer.getPlayer()).kickPlayer(Colours.colors
-                                ("&4&o You have been banned by " + player.getName()));
-                    }
-
-                } else if (duration == 0) {
-                    StringBuilder builtReason = new StringBuilder(args[1]);
-                    for (int arg = 1; arg < args.length; arg++) {
-                        builtReason.append(" ").append(args[arg]);
-                    }
-                    Bukkit.getBanList(BanList.Type.NAME).addBan(Objects.requireNonNull(targetPlayer.getName()),
-                            Colours.colors("&4&l" + builtReason), null, null);
-                    boolean isOnline = targetPlayer.isOnline();
-                    if (isOnline = true) {
-                        Objects.requireNonNull(targetPlayer.getPlayer()).kickPlayer(Colours.colors
-                                ("&4&o You have been kicked by " + player.getName() + " for " + builtReason));
-                    }
-
                 } else {
-                    Bukkit.getBanList(BanList.Type.NAME).addBan(Objects.requireNonNull(targetPlayer.getName()),
-                            Colours.colors("&4&l Banned"), null, null);
-                    boolean isOnline = targetPlayer.isOnline();
-                    if (isOnline = true) {
-                        Objects.requireNonNull(targetPlayer.getPlayer()).kickPlayer(Colours.colors
-                                ("&4&o You have been banned by " + player.getName()));
-                    }
+                    player.sendMessage(Colours.colors("&4Please enter a valid duration'."));
                 }
+            } else {
+                player.sendMessage(Colours.colors("&4Please use in format '/ban <username> [duration] [reason]'."));
             }
             return false;
         }
