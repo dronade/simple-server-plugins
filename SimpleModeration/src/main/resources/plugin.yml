@@ -9,3 +9,4 @@ commands:
   ban:
   mute:
   unban:
+  vanish:

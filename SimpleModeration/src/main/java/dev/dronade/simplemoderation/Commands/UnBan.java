@@ -42,7 +42,7 @@ public class UnBan implements CommandExecutor {
                 player.sendMessage(Colours.colors(" &4 Player is not banned"));
             }
 
-        // will make this system for console usage of commands better, but for now this will do
+        // console system not working :(
         } else if (commandSender instanceof ConsoleCommandSender){
             if (args.length < 1){
                 System.out.println("Please use in format '/unban <username> '.");

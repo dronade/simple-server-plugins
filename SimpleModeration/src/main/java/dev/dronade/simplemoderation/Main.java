@@ -12,6 +12,7 @@ public final class Main extends JavaPlugin {
         getCommand("ban").setExecutor(new Ban());
         getCommand("mute").setExecutor(new Mute());
         getCommand("unban").setExecutor(new UnBan());
+        getCommand("vanish").setExecutor(new Vanish());
     }
 
     @Override
