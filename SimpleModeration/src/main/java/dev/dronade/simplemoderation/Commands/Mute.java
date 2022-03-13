@@ -16,6 +16,7 @@ import org.bukkit.entity.Player;
 public class Mute implements CommandExecutor {
 
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
+        //need to actually implement
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;
             if (!player.hasPermission("simplemoderation.mute")) {

@@ -18,7 +18,7 @@ import java.util.Objects;
  * @author Emily
  */
 
-public class Ban extends ModerationCommand implements CommandExecutor {
+public class Ban extends ModerationCommands implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
@@ -50,7 +50,7 @@ public class Ban extends ModerationCommand implements CommandExecutor {
                     Bukkit.getBanList(BanList.Type.NAME).addBan(Objects.requireNonNull(targetPlayer.getName()),
                             Colours.colors("&4&l" + builtReason), null, null);
                     boolean isOnline = targetPlayer.isOnline();
-                    if (isOnline = true) {
+                    if (isOnline) {
                         Objects.requireNonNull(targetPlayer.getPlayer()).kickPlayer(Colours.colors
                                 ("&4&o You have been kicked by " + player.getName() + " for " + builtReason));
                     }

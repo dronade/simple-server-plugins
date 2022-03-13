@@ -15,7 +15,7 @@ import java.util.Objects;
  * @author Emily
  */
 
-public class Kick extends ModerationCommand implements CommandExecutor {
+public class Kick extends ModerationCommands implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
