@@ -10,6 +10,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+/**
+ * staff chat command, usage: /sc [message]
+ * @author Emily
+ */
+
 public class StaffChat implements Listener, CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command cmd, String commandLabel, String[] args) {
