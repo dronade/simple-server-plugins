@@ -24,7 +24,7 @@ public class Warn implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;
-            if (!player.hasPermission("simplemoderation.warn")) {
+            if (!player.hasPermission("simpleserver.warn")) {
                 player.sendMessage(Colours.colors("&4You are not permitted to use this command."));
                 return false;
             }

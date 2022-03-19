@@ -15,7 +15,7 @@ import java.util.Objects;
  * @author Emily
  */
 
-public class Kick extends ModerationCommands implements CommandExecutor {
+public class Kick extends AbstractCommands implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
@@ -24,13 +24,13 @@ public class Kick extends ModerationCommands implements CommandExecutor {
         // be able to perform command from terminal
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;
-            if (!player.hasPermission("simplemoderation.kick")) {
+            if (!player.hasPermission("simpleserver.kick")) {
                 player.sendMessage(Colours.colors("&4You are not permitted to use this command."));
                 return false;
             }
 
             if (args.length < 1){
-                player.sendMessage(Colours.colors("&4 Please use in format '/kick <username> [reason]'."));
+                player.sendMessage(Colours.colors("&4 Please use in format '/kick [ign] [reason]'."));
                 return false;
             }
             OfflinePlayer targetPlayer = Bukkit.getPlayer(args[0]);

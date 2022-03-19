@@ -16,7 +16,7 @@ import org.bukkit.entity.Player;
 public class Mute implements CommandExecutor {
 
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
-        //need to actually implement
+        //not implemented yet
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;
             if (!player.hasPermission("simplemoderation.mute")) {
@@ -25,7 +25,7 @@ public class Mute implements CommandExecutor {
             }
 
             if (args.length < 1){
-                player.sendMessage(Colours.colors("&4 Please use in format '/mute <username> [reason]'."));
+                player.sendMessage(Colours.colors("&4 Please use in format '/mute [ign] [reason]'."));
                 return false;
             }
             OfflinePlayer targetPlayer = Bukkit.getPlayer(args[0]);

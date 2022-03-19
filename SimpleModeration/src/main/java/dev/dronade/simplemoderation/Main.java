@@ -15,6 +15,7 @@ public final class Main extends JavaPlugin {
         getCommand("unban").setExecutor(new UnBan());
         getCommand("vanish").setExecutor(new Vanish());
         getCommand("sc").setExecutor(new StaffChat());
+        getCommand("message").setExecutor(new Message());
     }
 
     @Override

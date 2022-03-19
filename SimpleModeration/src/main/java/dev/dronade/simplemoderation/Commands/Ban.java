@@ -18,7 +18,7 @@ import java.util.Objects;
  * @author Emily
  */
 
-public class Ban extends ModerationCommands implements CommandExecutor {
+public class Ban extends AbstractCommands implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
@@ -30,7 +30,7 @@ public class Ban extends ModerationCommands implements CommandExecutor {
 
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;
-            if (!player.hasPermission("simplemoderation.ban")) {
+            if (!player.hasPermission("simpleserver.ban")) {
                 player.sendMessage(Colours.colors("&4You are not permitted to use this command."));
                 return false;
             }
@@ -73,7 +73,7 @@ public class Ban extends ModerationCommands implements CommandExecutor {
                     player.sendMessage(Colours.colors("&4Please enter a valid duration'."));
                 }
             } else {
-                player.sendMessage(Colours.colors("&4Please use in format '/ban <username> [duration] [reason]'."));
+                player.sendMessage(Colours.colors("&4Please use in format '/ban [ign] [duration] [reason]'."));
             }
             return false;
         }

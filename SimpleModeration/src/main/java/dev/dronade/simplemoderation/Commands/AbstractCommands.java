@@ -4,14 +4,15 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public abstract class ModerationCommands {
+public abstract class AbstractCommands {
     private String permission;
     private String noPermissionError;
 
     public void setPermission(String permission) {
         this.permission = permission;
     }
-    // to implement these at some point but it makes my brain hurt
+
+    //not implemented yet
     public boolean permissionCheck(CommandSender commandSender, Command command, String label, String[] args) {
 
         return false;

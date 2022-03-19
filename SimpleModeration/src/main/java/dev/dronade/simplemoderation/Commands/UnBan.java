@@ -18,6 +18,7 @@ import java.util.Objects;
  */
 
 public class UnBan implements CommandExecutor {
+
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;
@@ -36,27 +37,23 @@ public class UnBan implements CommandExecutor {
                 player.sendMessage(Colours.colors("&4 Player does not exist."));
                 return false;
             }
+
             if(targetPlayer.isBanned()){
                 Bukkit.getBanList(BanList.Type.NAME).pardon(Objects.requireNonNull(targetPlayer.getName()));
             } else{
                 player.sendMessage(Colours.colors(" &4 Player is not banned"));
             }
 
-        // console system not working :(
         } else if (commandSender instanceof ConsoleCommandSender){
             if (args.length < 1){
                 System.out.println("Please use in format '/unban <username> '.");
                 return false;
             }
-
-            OfflinePlayer targetPlayer = Bukkit.getPlayer(args[0]);
-            if (targetPlayer == null){
-                System.out.println("Player does not exist.");
-                return false;
-            }
+            OfflinePlayer targetPlayer = Bukkit.getOfflinePlayer(args[0]);
 
             if(targetPlayer.isBanned()){
                 Bukkit.getBanList(BanList.Type.NAME).pardon(Objects.requireNonNull(targetPlayer.getName()));
+                System.out.println(targetPlayer + " has been unbanned");
             } else{
                 System.out.println("Player is not banned");
             }
